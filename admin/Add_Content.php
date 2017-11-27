@@ -24,6 +24,8 @@ $temp_name  = $_FILES['FileUpload1']['tmp_name'];
 $target_dir = '../UploadedContentFiles/';
 $target_file = $target_dir . basename($_FILES["FileUpload1"]["name"]);
 
+$problem=0;
+
 if (file_exists($target_file)) 
 {
    $message = "Sorry, file already exists. Change file name upload again";
@@ -32,18 +34,36 @@ if (file_exists($target_file))
 }
 else
 {
+
+if(empty($SelectCourse)){
+  $problem+=1;
+ echo("Course Name cant be empty");
+}
+/* Validation
+
+
+
+*/
+
+
+
 if(isset($name))
 {
+  if($problem==0){
         if(!empty($name))
         {
-            $location = '../UploadedContentFiles/';      
+            $location = '../UploadedContentFiles/';    
+            var_dump(move_uploaded_file($temp_name, $location.$name));  
             if(move_uploaded_file($temp_name, $location.$name))
             {
-               $sql="Insert into content_master(C_Name,Year,Semister,Sub_Name,Cont_Type,Cont_Title,content,File,uploaded_By_Name) values('$SelectCourse','$SelectYear','$Selectsem','$SelectSubject','$SelectContType','$TxtTitle','$TxtDesc','$name','$uploaded_By_Name')";
+               $sql="Insert into content_master(course_id,year_id,sem_id,subject_id,content_type,content_title,content_desc,content_url,author) values('$SelectCourse','$SelectYear','$Selectsem','$SelectSubject','$SelectContType','$TxtTitle','$TxtDesc','$name','$uploaded_By_Name')";
+
+               
+               
                $result=mysqli_query($conn,$sql);
                if($result === FALSE) 
                { 
-                 die(mysqli_error()); // TODO: better error handling
+                 die(mysql_error()); // TODO: better error handling
                }
                else
                {
@@ -52,6 +72,8 @@ if(isset($name))
                }
             }
         }
+}
+
 }
 else
 {
