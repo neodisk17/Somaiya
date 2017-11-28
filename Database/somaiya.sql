@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2017 at 12:31 PM
+-- Generation Time: Nov 28, 2017 at 12:57 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `somaiya`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content_master`
+--
+
+CREATE TABLE `content_master` (
+  `content_id` int(20) NOT NULL,
+  `course_id` int(20) NOT NULL,
+  `year_id` int(20) NOT NULL,
+  `sem_id` int(20) NOT NULL,
+  `subject_id` int(20) NOT NULL,
+  `content_type` varchar(50) NOT NULL,
+  `content_title` varchar(50) NOT NULL,
+  `content_desc` varchar(5000) NOT NULL,
+  `content_url` varchar(500) NOT NULL,
+  `author` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -88,7 +107,9 @@ INSERT INTO `subject_master` (`subject_id`, `course_id`, `year_id`, `semester_id
 (6, '23', '1', '10', 'qwert'),
 (7, '23', '1', '10', 'qwert'),
 (8, '23', '1', '10', 'qwert'),
-(9, '23', '1', '10', '[piouy');
+(9, '23', '1', '10', '[piouy'),
+(10, 'none', 'none', 'none', 'esrty'),
+(11, 'none', 'none', 'none', 'esrty');
 
 -- --------------------------------------------------------
 
@@ -119,6 +140,12 @@ INSERT INTO `year_master` (`year_id`, `course_id`, `year`) VALUES
 --
 
 --
+-- Indexes for table `content_master`
+--
+ALTER TABLE `content_master`
+  ADD PRIMARY KEY (`content_id`);
+
+--
 -- Indexes for table `course_master`
 --
 ALTER TABLE `course_master`
@@ -147,6 +174,11 @@ ALTER TABLE `year_master`
 --
 
 --
+-- AUTO_INCREMENT for table `content_master`
+--
+ALTER TABLE `content_master`
+  MODIFY `content_id` int(20) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `course_master`
 --
 ALTER TABLE `course_master`
@@ -160,7 +192,7 @@ ALTER TABLE `semester_master`
 -- AUTO_INCREMENT for table `subject_master`
 --
 ALTER TABLE `subject_master`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `year_master`
 --
